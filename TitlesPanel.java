@@ -18,6 +18,10 @@ public class TitlesPanel extends JPanel implements ActionListener {
    private int shape;
 
 
+   /**
+    * Конструктор графической панели
+    * @param _shape Двузначное число, определяющее фигуру (см. конструктор ShapeFactory)
+    */
    public TitlesPanel(int _shape) {
       this.shape = _shape;
       this.animation = new Timer(50, this);

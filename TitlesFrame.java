@@ -4,6 +4,10 @@ import javax.swing.SwingUtilities;
 
 public class TitlesFrame extends JFrame {
 
+	/**
+	 * Конструктор главного окна,
+	 * который его же и отображает
+	 */
    public TitlesFrame() {
       this.initUI();
    }
@@ -16,6 +20,10 @@ public class TitlesFrame extends JFrame {
       this.setLocationRelativeTo((Component)null);
    }
 
+   /**
+    * Главная функция программы
+    * @param args Параметры командной строки
+    */
    public static void main(String[] args) {
       SwingUtilities.invokeLater(new Runnable() {
          public void run() {

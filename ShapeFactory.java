@@ -15,7 +15,13 @@ public class ShapeFactory {
    public int width = 25;
    public int height = 25;
 
-
+   /**
+    * Конструктор класса, создающий в процессе работы
+    * геометрическую фигуру - shape
+    * @param shape_type Двузначное число, определяющее тип фигуры:
+    * 1й разряд - форма фигуры
+    * 2й разряд - тип линии, образующей фигуру
+    */
    public ShapeFactory(int shape_type) {
       switch(shape_type / 10) {
       case 1:
@@ -69,6 +75,15 @@ public class ShapeFactory {
 
    }
 
+   /**
+    * Функция создает на основе заданных параметров
+    * правильный n-угольник
+    * @param arms Число двойных ребер
+    * @param center Точка, в которой находится центр
+    * @param rOuter Внешний радиус
+    * @param rInner Внутренний радиус
+    * @return
+    */
    private static Shape createStar(int arms, Point center, double rOuter, double rInner) {
       double angle = 3.141592653589793D / (double)arms;
       GeneralPath path = new GeneralPath();
