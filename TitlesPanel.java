@@ -15,18 +15,41 @@ public class TitlesPanel extends JPanel implements ActionListener {
    private Timer animation;
    private boolean is_done = true;
    private int start_angle = 0;
-   private int shape;
+   private ShapeFactory shape;
 
 
    /**
     * Конструктор графической панели
-    * @param _shape Двузначное число, определяющее фигуру (см. конструктор ShapeFactory)
+    * @param shape Заранее созданный объект типа Shape
     */
-   public TitlesPanel(int _shape) {
-      this.shape = _shape;
-      this.animation = new Timer(50, this);
-      this.animation.setInitialDelay(50);
-      this.animation.start();
+   
+   public TitlesPanel(ShapeFactory shape) {
+	      this.shape = shape;
+	      this.animation = new Timer(50, this);
+	      this.animation.setInitialDelay(50);
+	      this.animation.start();
+   }
+   
+   /**
+    * @deprecated
+    * Устаревший конструктор, сохраненный для совместимости
+    * @param shape
+    */
+   @Deprecated public TitlesPanel(int shape) {
+	      this(new ShapeFactory(shape));
+   }
+   
+   /**
+    * Конструктор создает TitlesPanel на основе заранее предопределенных
+    * свойств класса Shape
+    * @param form Форма отображаемой фигуры
+    * @param stroketype Тип линии, образующей фигуру
+    * @param painttype Цвет линии, образующей фигуру
+    */
+   public TitlesPanel(ShapeFactory.ShapeForm form, ShapeFactory.StrokeType stroketype, ShapeFactory.PaintType painttype) {
+	   this(new ShapeFactory(form));
+	   shape.setStroke(stroketype);
+	   shape.setPaint(painttype);
    }
 
    public void actionPerformed(ActionEvent arg0) {
@@ -44,7 +67,7 @@ public class TitlesPanel extends JPanel implements ActionListener {
       Insets insets = this.getInsets();
       int w = size.width - insets.left - insets.right;
       int h = size.height - insets.top - insets.bottom;
-      ShapeFactory shape = new ShapeFactory(this.shape);
+      //ShapeFactory shape = new ShapeFactory(this.shape);
       this.g2d.setStroke(shape.stroke);
       this.g2d.setPaint(shape.paint);
       double angle = (double)(this.start_angle++);
